@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,8 +24,15 @@ Route::get('/logout', function () {
     return view('login');
 });
 
+Route::get('/register', function () {
+    return view('register');
+});
+
 Route::post('/login', [UserController::class, 'login']);
+Route::post('/register', [UserController::class, 'register']);
+//Route::view('/register','register')
 Route::get('/', [ProductController::class, 'index']);
+Route::get('/admin', [AdminController::class, 'index']);
 Route::get('/detail/{id}', [ProductController::class, 'detail']);
 Route::post("add_to_cart", [ProductController::class, 'addToCart']);
 Route::post("orderplace", [ProductController::class, 'orderPlace']);
